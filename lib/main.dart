@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tana/IndiaBenfits.dart';
+import 'package:tana/NationalBenfits.dart';
+import 'package:tana/ReginalBenfits.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Your App Name',
+      title: 'TANA',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -538,6 +541,10 @@ class ClientScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NationalBenfits()),
+              );
                     // Add your button logic here
                   },
                   style: ElevatedButton.styleFrom(
@@ -550,6 +557,11 @@ class ClientScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Add your button logic here
+                    Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegionalBenfits()),
+              );
+                    
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize:
@@ -561,6 +573,10 @@ class ClientScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Add your button logic here
+                         Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => IndiaBenfits()),
+              );
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize:
@@ -610,3 +626,4 @@ class ClientScreen extends StatelessWidget {
     );
   }
 }
+
