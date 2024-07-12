@@ -13,24 +13,35 @@ class Benfit extends StatelessWidget {
 
     return Scaffold(
       
-      body: Column(
+      body: SingleChildScrollView(child:  Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            color: Color(0xFFC20000), // Replace with your desired color
-            child: SizedBox(
-              height: Height * 0.13,
-              width: Width * 1,
-              child: Image.asset('assets/header.png',
-                  height: Height * 0.2, width: Width * 1),
-            ),
+          decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Color(0xFFC20000), // Left color
+        Color(0xFFA00000), // Right color
+      ],
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+    ),
+  ), // Replace with your desired color
+          child:Column(children: [ 
+            SizedBox(height: Height*0.04,),
+          SizedBox(
+            height: Height * 0.10,
+            width: Width * 1,
+            child: Image.asset('assets/header.png',
+                height: Height * 0.2, width: Width * 1),
           ),
+        ],)),
           SizedBox(
             height: Height * 0.04,
           ),
           SizedBox(height: Height*0.05,),
           Center(child: 
-              Image.asset(imagePath,scale: 4,),),
+              Image.asset(imagePath,scale: 5,),),
            SizedBox(height: Height*0.1,),
           Center(child: 
               Text(title,style: TextStyle(fontSize: 30),)),
@@ -88,6 +99,7 @@ class Benfit extends StatelessWidget {
           ),            
           ],
       ),
+      )
     );
   }
 }

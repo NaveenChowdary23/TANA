@@ -72,14 +72,25 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            color: Color(0xFFC20000), // Replace with your desired color
-            child: SizedBox(
-              height: Height * 0.13,
-              width: Width * 1,
-              child: Image.asset('assets/header.png',
-                  height: Height * 0.2, width: Width * 1),
-            ),
+          decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Color(0xFFC20000), // Left color
+        Color(0xFFA00000), // Right color
+      ],
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+    ),
+  ), // Replace with your desired color
+          child:Column(children: [ 
+            SizedBox(height: Height*0.04,),
+          SizedBox(
+            height: Height * 0.10,
+            width: Width * 1,
+            child: Image.asset('assets/header.png',
+                height: Height * 0.2, width: Width * 1),
           ),
+        ],)),
           SizedBox(
             height: Height * 0.04,
           ),
@@ -340,7 +351,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
             ),
           ),
           SizedBox(
-            height: Height * 0.02,
+            height: Height * 0.01,
           ),
           Center(
             child: Row(
