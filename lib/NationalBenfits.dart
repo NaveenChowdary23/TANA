@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tana/Benfits.dart';
+import 'package:tana/home.dart';
 import 'package:tana/main.dart';
 class NationalBenfits extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
       height: Height * 0.1,
       width: Width * 0.2,
       decoration: BoxDecoration(
-        color: Color(0xFFF8AF03),
+        color: Color.fromARGB(255, 249, 249, 249),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -56,7 +57,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
             child: Center(
               child: Text(
                 title,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ),
@@ -68,6 +69,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
 
 
     return Scaffold(
+      backgroundColor: Color(0xffeeeff4), 
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -123,6 +125,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
             Column(children: [
 
             Card(
+              color: Colors.white,
       margin: EdgeInsets.all(16.0),
       child: Column(
         children: [
@@ -168,6 +171,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
       ),
     ),
     Card(
+        color: Colors.white,
       margin: EdgeInsets.all(16.0),
       child: Column(
         children: [
@@ -213,6 +217,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
       ),
     ),
     Card(
+        color: Colors.white,
       margin: EdgeInsets.all(16.0),
       child: Column(
         children: [
@@ -258,6 +263,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
       ),
     ),
     Card(
+        color: Colors.white,
       margin: EdgeInsets.all(16.0),
       child: Column(
         children: [
@@ -303,6 +309,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
       ),
     ),
     Card(
+        color: Colors.white,
       margin: EdgeInsets.all(16.0),
       child: Column(
         children: [

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tana/IndiaBenfits.dart';
-import 'package:tana/NationalBenfits.dart';
-import 'package:tana/ReginalBenfits.dart';
+import 'package:tana/home.dart';
+import 'package:tana/mainBenfits.dart';
 
 void main() {
   runApp(MyApp());
@@ -71,8 +70,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _TwoTextInputsState extends State<MainScreen> {
-  final TextEditingController _controller1 = TextEditingController();
-  final TextEditingController _controller2 = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   int selectedButtonIndex = 0;
 
@@ -84,8 +83,8 @@ class _TwoTextInputsState extends State<MainScreen> {
 
   @override
   void dispose() {
-    _controller1.dispose();
-    _controller2.dispose();
+    _usernameController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -95,6 +94,7 @@ class _TwoTextInputsState extends State<MainScreen> {
     double Width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Color(0xffeeeff4),
         body: Column(
       children: [
         Container(
@@ -116,10 +116,10 @@ class _TwoTextInputsState extends State<MainScreen> {
             child: Image.asset('assets/header.png',
                 height: Height * 0.2, width: Width * 1),
           ),
+          
         ],)),
-        
         SizedBox(
-          height: Height * 0.2,
+          height: Height * 0.3,
           child: Center(
             child: Text(
               "Welcome to TANA",
@@ -127,80 +127,68 @@ class _TwoTextInputsState extends State<MainScreen> {
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: Height * 0.45,
-              width: Width * 0.8,
-              decoration: BoxDecoration(
-                color: Color(0xFFFFC000),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2), // Shadow color
-                    spreadRadius: 2, // Spread radius
-                    blurRadius: 5, // Blur radius
-                    offset: Offset(0, 3), // Offset in the x and y direction
+        SizedBox(width: Width*0.8,child: Center(child: TextField(
+                controller: _usernameController,
+                cursorColor: Colors.red,
+                obscureText: true,
+                decoration: InputDecoration(
+                   filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(100.0),
+                    borderSide: BorderSide.none,
                   ),
-                ],
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                    borderRadius: BorderRadius.circular(100.0),
+                  ),
+                ),
+              ),),),
+                            SizedBox(height: 20.0),
+              SizedBox(width: Width*0.8,child: Center(child: TextField(
+                controller: _passwordController,
+                cursorColor: Colors.red,
+                obscureText: true,
+                decoration: InputDecoration(
+                   filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Last name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(100.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                    borderRadius: BorderRadius.circular(100.0),
+                  ),
+                ),
+              ),),),
+              
+              SizedBox(height: 20.0),
+              SizedBox(width: Width*0.8,child: Center(child:
+               Container(
+          width: Width*0.8, // Adjust width as needed
+          height: 60, // Adjust height as needed
+          child: TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  VerifyScreen()),
+              );
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+            ),
+            child: Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
               ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: Height * 0.02,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () => onButtonPressed(0),
-                        child: const Text(
-                          'Log in',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  CustomTextFields(
-                    controller1: _controller1,
-                    controller2: _controller2,
-                  ),
-                  SizedBox(
-                    height: Height * 0.03,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const VerifyScreen()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF074F93), // Background color
-                          onPrimary: Colors.white, // Text color
-                          minimumSize: Size(150, 50), // Minimum size
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15), // Padding
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            // Rounded corners
-                          ),
-                          elevation: 5, // Shadow elevation
-                        ),
-                        child: const Text('Sign In'),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ),),),
         SizedBox(
           height: Height * 0.08,
         ),
@@ -265,7 +253,8 @@ class CustomTextFields extends StatelessWidget {
 }
 
 class VerifyScreen extends StatelessWidget {
-  const VerifyScreen({super.key});
+   VerifyScreen({super.key});
+  final TextEditingController _code = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -273,6 +262,7 @@ class VerifyScreen extends StatelessWidget {
     double Width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Color(0xffeeeff4),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -332,40 +322,51 @@ class VerifyScreen extends StatelessWidget {
           SizedBox(
             height: Height * 0.08,
           ),
-          SizedBox(
-            width: Width *
-                0.4, // Adjust the width as needed, assuming Width is defined in your context
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter code',
-              ),
-            ),
-          ),
+          SizedBox(width: Width*0.8,child: Center(child: TextField(
+                controller: _code,
+                cursorColor: Colors.red,
+                obscureText: true,
+                decoration: InputDecoration(
+                   filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Enter code',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(100.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                    borderRadius: BorderRadius.circular(100.0),
+                  ),
+                ),
+              ),),),
+              
           SizedBox(
             height: Height * 0.08,
           ),
-          ElevatedButton(
+          SizedBox(width: Width*0.8,child: Center(child:
+               Container(
+          width: Width*0.8, // Adjust width as needed
+          height: 60, // Adjust height as needed
+          child: TextButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ClientScreen()),
+                MaterialPageRoute(builder: (context) =>  MainBenfits()),
               );
             },
-            style: ElevatedButton.styleFrom(
-              primary: Color(0xFFFFC000), // Background color
-              onPrimary: Colors.white, // Text color
-              minimumSize: Size(150, 50), // Minimum size
-              padding:
-                  EdgeInsets.symmetric(horizontal: 20, vertical: 15), // Padding
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                // Rounded corners
-              ),
-              elevation: 5, // Shadow elevation
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
             ),
-            child: const Text('Verify'),
+            child: Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+            ),
           ),
+        ),),),
           SizedBox(
             height: Height * 0.15,
           ),
@@ -391,270 +392,6 @@ class VerifyScreen extends StatelessWidget {
               ),
             ],
           )
-        ],
-      ),
-    );
-  }
-}
-
-class ClientScreen extends StatelessWidget {
-  const ClientScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    double Height = MediaQuery.of(context).size.height;
-    double Width = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-          decoration: BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        Color(0xFFC20000), // Left color
-        Color(0xFFA00000), // Right color
-      ],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-    ),
-  ), // Replace with your desired color
-          child:Column(children: [ 
-            SizedBox(height: Height*0.04,),
-          SizedBox(
-            height: Height * 0.10,
-            width: Width * 1,
-            child: Image.asset('assets/header.png',
-                height: Height * 0.2, width: Width * 1),
-          ),
-        ],)),
-          SizedBox(
-            height: Height * 0.02,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
-                child: Text(
-                  'Welcome Naveen',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: Width * 0.1,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.04,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
-                child: Text(
-                  'TANA ID CARD',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: Width * 0.1,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.02,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: Height * 0.25,
-                width: Width * 0.9,
-                decoration: BoxDecoration(
-                  color: Color(0xFFFFC000),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2), // Shadow color
-                      spreadRadius: 2, // Spread radius
-                      blurRadius: 5, // Blur radius
-                      offset: Offset(0, 3), // Offset in the x and y direction
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Image.asset('assets/header.png',
-                  height: Height * 0.08, width: Width * 1),
-            
-                    SizedBox(
-                      height: Height * 0.02,
-                    ),
-                    Center(child: Text("Naveen Chowdary Maguluri",style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
-                    SizedBox(
-                      height: Height * 0.05,
-                    ),
-                    Row(children: [
-                      SizedBox(width: Width*0.1,),
-                      Text("Member ID : L-123456"),
-                    ],)
-                     
-                    
-                  ],
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.04,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
-                child: Text(
-                  'Benfit Center',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: Width * 0.1,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.02,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: Height * 0.3,
-                width: Width * 0.9,
-                decoration: BoxDecoration(
-                  color: Color(0xFFCA0000),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2), // Shadow color
-                      spreadRadius: 2, // Spread radius
-                      blurRadius: 5, // Blur radius
-                      offset: Offset(0, 3), // Offset in the x and y direction
-                    ),
-                  ],
-                ),
-                child: Column(
-                  
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NationalBenfits()),
-              );
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('National Level Benfits'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                    Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RegionalBenfits()),
-              );
-                    
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Regional Benfits'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                         Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => IndiaBenfits()),
-              );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('India Benfits'),
-                ),
-              ],
-            
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.02,
-          ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Benfits Home'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('My Benfits'),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

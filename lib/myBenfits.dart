@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tana/home.dart';
 import 'package:tana/main.dart';
 
-class Benfit extends StatelessWidget {
-  final String title;
-  final String imagePath;
-
-  Benfit({required this.title, required this.imagePath});
+class myBenfit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double Height=MediaQuery.of(context).size.height;
@@ -41,11 +37,7 @@ class Benfit extends StatelessWidget {
             height: Height * 0.04,
           ),
           SizedBox(height: Height*0.05,),
-          Center(child: 
-              Image.asset(imagePath,scale: 5,),),
            SizedBox(height: Height*0.1,),
-          Center(child: 
-              Text(title,style: TextStyle(fontSize: 30),)),
               SizedBox(height: Height*0.05,),
               Text("Discount 30%",style: TextStyle(fontSize: 30),),
               SizedBox(height: Height*0.05,),
