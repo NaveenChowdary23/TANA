@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tana/home.dart';
-import 'package:tana/main.dart';
+import 'package:tana/Drawer.dart';
+import 'package:tana/navigation.dart';
 
 class Benfit extends StatelessWidget {
   final String title;
@@ -30,6 +30,7 @@ class Benfit extends StatelessWidget {
   ), // Replace with your desired color
           child:Column(children: [ 
             SizedBox(height: Height*0.04,),
+            
           SizedBox(
             height: Height * 0.10,
             width: Width * 1,
@@ -38,69 +39,49 @@ class Benfit extends StatelessWidget {
           ),
         ],)),
           SizedBox(
-            height: Height * 0.04,
+            height: Height * 0.05,
           ),
-          SizedBox(height: Height*0.05,),
-          Center(child: 
-              Image.asset(imagePath,scale: 5,),),
-           SizedBox(height: Height*0.1,),
-          Center(child: 
-              Text(title,style: TextStyle(fontSize: 30),)),
-              SizedBox(height: Height*0.05,),
-              Text("Discount 30%",style: TextStyle(fontSize: 30),),
-              SizedBox(height: Height*0.05,),
-              Text("Valid till 26 Nov",style: TextStyle(fontSize: 30),),
-              SizedBox(height: Height*0.05,),
-              
-            ElevatedButton(
-                  onPressed: () {
+          Row(children: [
+              SizedBox(width: Width*0.1,),
+              IconButton(onPressed: () {
                     // Add your button logic here
                      Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Back'),
-                ),
-            SizedBox(
-            height: Height * 0.08,
-          ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                        Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ClientScreen()),
-              );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Benfits Home'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('My Benfits'),
-                ),
-              ],
+                  }, icon: 
+              Icon(Icons.arrow_back_ios))
+            ],),
+          SizedBox(height: Height*0.1,),
+          Center(child: 
+          Container(
+            height: Height * 0.3,
+            width: Width * 0.6,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0), // Rounded corners
+              border: Border.all(
+                color: Colors.blue, // Border color
+                width: 2.0, // Border width
+              ),
             ),
-          ),            
+            child: Column(children: [
+              SizedBox(height: Height*0.02,),
+              SizedBox(height: Height*0.1,child: Image.asset(imagePath),),
+              
+              SizedBox(height: Height*0.04,),
+              Text(title),
+              SizedBox(height: Height*0.04,),
+              Text('50% off'),
+              
+            ],),
+          ),
+          ),          
           ],
       ),
-      )
+      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+          
+          selected: 1,
+        ),
+        drawer: DrawerWidget(),
     );
   }
 }

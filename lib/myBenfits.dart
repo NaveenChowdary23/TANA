@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tana/Drawer.dart';
 import 'package:tana/home.dart';
 import 'package:tana/main.dart';
+import 'package:tana/mainBenfits.dart';
+import 'package:tana/navigation.dart';
 
 class myBenfit extends StatelessWidget {
   @override
@@ -36,63 +39,139 @@ class myBenfit extends StatelessWidget {
           SizedBox(
             height: Height * 0.04,
           ),
-          SizedBox(height: Height*0.05,),
-           SizedBox(height: Height*0.1,),
-              SizedBox(height: Height*0.05,),
-              Text("Discount 30%",style: TextStyle(fontSize: 30),),
-              SizedBox(height: Height*0.05,),
-              Text("Valid till 26 Nov",style: TextStyle(fontSize: 30),),
-              SizedBox(height: Height*0.05,),
-              
-            ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                     Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Back'),
-                ),
-            SizedBox(
-            height: Height * 0.08,
+          Text('My Benefits',style: TextStyle(fontSize: 25),),
+          SizedBox(
+            height: Height * 0.04,
           ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                        Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ClientScreen()),
-              );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Benfits Home'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('My Benfits'),
-                ),
-              ],
+          Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: Width*0.1,
+          ),
+          Container(
+            height: Height * 0.15,
+            width: Width * 0.3,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0), // Rounded corners
+              border: Border.all(
+                color: Colors.blue, // Border color
+                width: 2.0, // Border width
+              ),
             ),
-          ),            
+            child: Column(children: [
+              SizedBox(height: Height*0.02,),
+              SizedBox(height: Height*0.05,child: Image.asset('assets/amazon.png'),),
+              
+              
+              SizedBox(height: Height*0.02,),
+              Text('50% off'),
+              
+            ],),
+          ),
+          SizedBox(
+            width: Width*0.1,
+          ),
+          
+
+          Container(
+            height: Height * 0.15,
+            width: Width * 0.3,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0), // Rounded corners
+              border: Border.all(
+                color: Colors.blue, // Border color
+                width: 2.0, // Border width
+              ),
+            ),
+            child: Column(children: [
+              SizedBox(height: Height*0.02,),
+              SizedBox(height: Height*0.05,child: Image.asset('assets/Target.png'),),
+              
+              
+              SizedBox(height: Height*0.02,),
+              Text('50% off'),
+              
+            ],),
+          ),
+           SizedBox(
+            width: Width*0.1,
+          ),
+         
+        ],
+      ),
+      SizedBox(
+            height: Height * 0.04,
+          ),
+          Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: Width*0.1,
+          ),
+          Container(
+            height: Height * 0.15,
+            width: Width * 0.3,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0), // Rounded corners
+              border: Border.all(
+                color: Colors.blue, // Border color
+                width: 2.0, // Border width
+              ),
+            ),
+            child: Column(children: [
+              SizedBox(height: Height*0.02,),
+              SizedBox(height: Height*0.05,child: Image.asset('assets/theHome.png'),),
+              
+              
+              SizedBox(height: Height*0.02,),
+              Text('50% off'),
+              
+            ],),
+          ),
+          SizedBox(
+            width: Width*0.1,
+          ),
+          
+
+          Container(
+            height: Height * 0.15,
+            width: Width * 0.3,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0), // Rounded corners
+              border: Border.all(
+                color: Colors.blue, // Border color
+                width: 2.0, // Border width
+              ),
+            ),
+            child: Column(children: [
+              SizedBox(height: Height*0.02,),
+              SizedBox(height: Height*0.05,child: Image.asset('assets/Walmart.png'),),
+              
+              
+              SizedBox(height: Height*0.02,),
+              Text('50% off'),
+              
+            ],),
+          ),
+           SizedBox(
+            width: Width*0.1,
+          ),
+         
+        ],
+      ),
           ],
       ),
-      )
+      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+          
+          selected: 2,
+        ),
+        drawer: DrawerWidget(),
     );
   }
 }

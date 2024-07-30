@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tana/Drawer.dart';
 import 'package:tana/home.dart';
 import 'package:tana/main.dart';
+import 'package:tana/mainBenfits.dart';
+import 'package:tana/navigation.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -36,63 +39,65 @@ class Profile extends StatelessWidget {
           SizedBox(
             height: Height * 0.04,
           ),
-          SizedBox(height: Height*0.05,),
-           SizedBox(height: Height*0.1,),
-              SizedBox(height: Height*0.05,),
-              Text("Discount 30%",style: TextStyle(fontSize: 30),),
-              SizedBox(height: Height*0.05,),
-              Text("Valid till 26 Nov",style: TextStyle(fontSize: 30),),
-              SizedBox(height: Height*0.05,),
-              
-            ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                     Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Back'),
-                ),
-            SizedBox(
-            height: Height * 0.08,
-          ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                        Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ClientScreen()),
-              );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Benfits Home'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('My Benfits'),
-                ),
-              ],
+          
+          Text('Profile',style: TextStyle(fontSize: 25),),
+          SizedBox(
+            height: Height * 0.04,
+          ), 
+          Row(children: [
+            SizedBox(width: Width*0.6,
             ),
-          ),            
+            IconButton(
+                      icon: Icon(
+                        Icons.camera_alt,
+                        size: 20,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        // Add your edit button functionality here
+                      },
+                    ),
+          ],),
+          
+            CircleAvatar(
+                      radius: 50, // Adjust the radius as needed
+                      backgroundColor: Colors
+                          .grey.shade200, // Background color while loading
+                      child: ClipOval(
+                        child: Icon(
+                              Icons.person,
+                              size:
+                                  50, // Adjust the size to fit the CircleAvatar radius
+                              color: Colors.grey,
+                            )
+                      ),
+                    ), 
+          SizedBox(
+            height: Height * 0.04,
+          ),
+          Text('SAI BOLLINENI',style: TextStyle(fontSize: 20),),
+          SizedBox(
+            height: Height * 0.04,
+          ),
+          Text('sai.bollineni@gmail.com',style: TextStyle(fontSize: 20),),
+          SizedBox(
+            height: Height * 0.04,
+          ),
+          Text('+1 9876543210',style: TextStyle(fontSize: 20),),
+          SizedBox(
+            height: Height * 0.04,
+          ),
+          Text('Salt Fork Dr, Fort Worth, \nTX 76179, USA',style: TextStyle(fontSize: 20),),
+                    
+
           ],
       ),
-      )
+      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+          
+          selected: 3,
+        ),
+        drawer: DrawerWidget(),
     );
   }
 }

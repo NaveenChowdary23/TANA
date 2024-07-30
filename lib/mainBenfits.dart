@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tana/Drawer.dart';
 import 'package:tana/IndiaBenfits.dart';
 import 'package:tana/NationalBenfits.dart';
 import 'package:tana/ReginalBenfits.dart';
@@ -41,81 +42,50 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
        backgroundColor: Color(0xffeeeff4), 
-      body: Column(
+      body:Stack(children: [ 
+        Positioned(
+          top: 0,
+          right: 0,
+          left: 0,
+          child: Image.asset('assets/home.png'),
+        ),
+        Positioned(
+          top: 40,
+          
+          left: 20,
+          child: Text('Welcome',style: TextStyle(color: Colors.white),),
+        ),
+        Positioned(
+          top: 60,
+          
+          left: 20,
+          child: Text('Sai Bollineni',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+        ),
+
+        Positioned(
+                    top: 40,
+                    right: 20,
+                    child: CircleAvatar(
+                      radius: 30, // Adjust the radius as needed
+                      backgroundColor: Colors
+                          .grey.shade200, // Background color while loading
+                      child: ClipOval(
+                        child: Icon(
+                              Icons.person,
+                              size:
+                                  50, // Adjust the size to fit the CircleAvatar radius
+                              color: Colors.grey,
+                            )
+                      ),
+                    ),
+                  ),
+                  
+
+      Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-          decoration: BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        Color(0xFFC20000), // Left color
-        Color(0xFFA00000), // Right color
-      ],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-    ),
-  ), // Replace with your desired color
-          child:Column(children: [ 
-            SizedBox(height: Height*0.04,),
           SizedBox(
-            height: Height * 0.10,
-            width: Width * 1,
-            child: Image.asset('assets/header.png',
-                height: Height * 0.2, width: Width * 1),
-          ),
-        ],)),
-          SizedBox(
-            height: Height * 0.02,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
-                child: Text(
-                  'Welcome Naveen',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: Width * 0.1,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.04,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
-                child: Text(
-                  'TANA ID CARD',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: Width * 0.1,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.02,
+            height: Height * 0.25,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -161,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       height: Height * 0.02,
                     ),
-                    Center(child: Text("Naveen Chowdary Maguluri",style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),),
+                    Center(child: Text("SAI BOLLINENI",style:TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
                     SizedBox(
                       height: Height * 0.01,
                     ),
@@ -169,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                       
-                      Text("Member ID : L-123456",style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text("Member ID : L-123456",style: TextStyle(fontSize: 25,),),
                     ],)
                      
                     
@@ -189,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: Width * 0.8, // Adjust the width as needed
                 child: Text(
-                  'Benfit Center',
+                  'Benefits Center',
                   maxLines: null, // Allows the text to wrap to a new line
                   overflow:
                       TextOverflow.visible, // Ensures the text is fully visible
@@ -219,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     minimumSize:
                          Size(Width*0.8, Height*0.06), // Set the width and height of the button
                   ),
-                  child: Text('National Level Benfits',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20,)),
+                  child: Text('National Benefits',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20,)),
                 ),
                 SizedBox(height: Height*0.02), // Add spacing between buttons
                 ElevatedButton(
@@ -235,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     minimumSize:
                          Size(Width*0.8, Height*0.06), // Set the width and height of the button
                   ),
-                  child: Text('Regional Benfits',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20,),),
+                  child: Text('Regional Benefits',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20,),),
                 ),
                 SizedBox(height: Height*0.02), // Add spacing between buttons
                 ElevatedButton(
@@ -250,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     minimumSize:
                          Size(Width*0.8, Height*0.06), // Set the width and height of the button
                   ),
-                  child: Text('Global Benfits',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20,)),
+                  child: Text('Global Benefits',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20,)),
                 ),
           
           SizedBox(
@@ -259,10 +229,13 @@ class _MyHomePageState extends State<MyHomePage> {
           
         ],
       ),
-       bottomNavigationBar: CustomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-      ),
+      ],),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+          
+          selected: 1,
+        ),
+        drawer: DrawerWidget(),
+       
     );
   }
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tana/Benfits.dart';
+import 'package:tana/Drawer.dart';
 import 'package:tana/home.dart';
 import 'package:tana/main.dart';
+import 'package:tana/mainBenfits.dart';
+import 'package:tana/myBenfits.dart';
+import 'package:tana/navigation.dart';
 class ReginalBenfitsSub extends StatefulWidget {
   final String name;
 
@@ -106,8 +110,14 @@ class _NationalBenfitsBoxState extends State<ReginalBenfitsSub> {
               SizedBox(
                 width: Width * 0.1,
               ),
+              IconButton(onPressed: () {
+                    // Add your button logic here
+                     Navigator.pop(context);
+                  }, icon: 
+              Icon(Icons.arrow_back_ios)),
+            
               SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
+                width: Width * 0.65, // Adjust the width as needed
                 child: Center(child:  Text(
                   widget.name,
                   maxLines: null, // Allows the text to wrap to a new line
@@ -357,56 +367,18 @@ class _NationalBenfitsBoxState extends State<ReginalBenfitsSub> {
             ],),
             ),
           ),
-          ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                     Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Back'),
-                ),
-            
           SizedBox(
             height: Height * 0.02,
           ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                    Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ClientScreen()),
-              );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('Benfits Home'),
-                ),
-                SizedBox(width: Width*0.05), // Add spacing between buttons
-                ElevatedButton(
-                  onPressed: () {
-                    // Add your button logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                         Size(Width*0.4, Height*0.05), // Set the width and height of the button
-                  ),
-                  child: Text('My Benfits'),
-                ),
-              ],
-            ),
-          ),
+          
         ],
       ),
-      )
+      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+          
+          selected: 1,
+        ),
+        drawer: DrawerWidget(),
     );
   }
 }

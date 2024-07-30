@@ -64,28 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ), // Replace with your desired color
           child:Column(children: [ 
-            SizedBox(height: Height*0.04,),
-           Container(
-                height: Height * 0.1,
-                width: Width * 1,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: Width*0.05,),
-                    Image.asset('assets/main.png'),
-                    SizedBox(width: Width*0.05,),
-                    Text('TANA',style: TextStyle(fontSize: 45,color: Color(0xFFf95554),fontWeight: FontWeight.bold),),
-                    SizedBox(width: Width*0.05,),
-                    Image.asset('assets/sub.png'),
-                    
-                    
-                  ]
-                )
-                    ),
+            SizedBox(height: Height*0.04,),           
                    
         ],)),
           SizedBox(
@@ -213,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: Width * 0.8, // Adjust the width as needed
                 child: Text(
-                  'Know more about tana',
+                  'Know more about Tana',
                   maxLines: null, // Allows the text to wrap to a new line
                   overflow:
                       TextOverflow.visible, // Ensures the text is fully visible
@@ -420,11 +399,44 @@ Center(
           
         ],
       ),
-       bottomNavigationBar: CustomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-      ),
+       
     );
   }
 }
 
+
+class SemiContainer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(maxWidth: 800), // Max width of the container
+      padding: EdgeInsets.all(20), // Padding inside the container
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+        borderRadius: BorderRadius.circular(8), // Rounded corners
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(
+            'Hello, World!',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'This is a semi container example with centered content and a max-width.',
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}

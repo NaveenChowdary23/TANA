@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tana/home.dart';
+import 'package:tana/Drawer.dart';
 import 'package:tana/mainBenfits.dart';
 
 void main() {
@@ -213,9 +213,37 @@ class _TwoTextInputsState extends State<MainScreen> {
               width: Width * 0.1,
             ),
           ],
-        )
+        ),
+        SizedBox(
+          height: Height * 0.04,
+        ),
+        Row(children: [
+          SizedBox(width: Width*0.1,),
+          Builder(
+                                  builder: (context) => GestureDetector(
+                                    onTap: () {
+                                      Scaffold.of(context).openDrawer();
+                                    },
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.menu_rounded,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+        ],),
+        Row(children: [
+          SizedBox(width: Width*0.1,),
+          Text('menu'),
+        ])
       ],
-    ));
+    ),
+    drawer: DrawerWidget(),
+    );
   }
 }
 
@@ -391,9 +419,33 @@ class VerifyScreen extends StatelessWidget {
                 width: Width * 0.1,
               ),
             ],
-          )
-        ],
-      ),
+          ),
+          Row(children: [
+          SizedBox(width: Width*0.1,),
+          Builder(
+                                  builder: (context) => GestureDetector(
+                                    onTap: () {
+                                      Scaffold.of(context).openDrawer();
+                                    },
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.menu_rounded,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+        ],),
+        Row(children: [
+          SizedBox(width: Width*0.1,),
+          Text('menu'),
+        ])
+      ],
+    ),
+    drawer: DrawerWidget(),
     );
   }
 }
