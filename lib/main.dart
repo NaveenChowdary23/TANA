@@ -197,18 +197,7 @@ class _TwoTextInputsState extends State<MainScreen> {
             SizedBox(
               width: Width * 0.1,
             ),
-            SizedBox(
-              width: Width * 0.8, // Adjust the width as needed
-              child: Text(
-                'Telugu Association of North America (or TANA, as it is well known) is the oldest and biggest Indo-American organization in North America.',
-                maxLines: null, // Allows the text to wrap to a new line
-                overflow:
-                    TextOverflow.visible, // Ensures the text is fully visible
-                style: TextStyle(
-                  fontSize: 16.0, // Adjust the font size as needed
-                ),
-              ),
-            ),
+           
             SizedBox(
               width: Width * 0.1,
             ),
@@ -325,7 +314,7 @@ class VerifyScreen extends StatelessWidget {
               SizedBox(
                 width: Width * 0.8, // Adjust the width as needed
                 child: Text(
-                  'Telugu Association of North America (or TANA, as it is well known) is the oldest and biggest Indo-American organization in North America.',
+                  'We Sent an Authorization Code to your Email Please Enter Authorization Code to Authorize',
                   maxLines: null, // Allows the text to wrap to a new line
                   overflow:
                       TextOverflow.visible, // Ensures the text is fully visible
@@ -396,7 +385,7 @@ class VerifyScreen extends StatelessWidget {
           ),
         ),),),
           SizedBox(
-            height: Height * 0.15,
+            height: Height * 0.1,
           ),
           Row(
             children: [

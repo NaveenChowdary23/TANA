@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tana/Callushelp.dart';
+import 'package:tana/Directors.dart';
+import 'package:tana/Executive.dart';
+import 'package:tana/Foundation.dart';
+import 'package:tana/President.dart';
+import 'package:tana/Teamsquare.dart';
+import 'package:tana/abouttana.dart';
 import 'package:tana/mainBenfits.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -21,6 +28,7 @@ class _OneStopScreenState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     double Height = MediaQuery.of(context).size.height;
     double Width = MediaQuery.of(context).size.width;
     return Drawer(
@@ -35,7 +43,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
           ListTile(
             title: Text('HOME'.toUpperCase()),
             onTap: () {
-              
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MainBenfits()),
+              );
             },
           ),
           
@@ -50,6 +61,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
           ListTile(
             title: Text('ABOUT TANA'.toUpperCase()),
             onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutTana()),
+              );
               
             },
           ),
@@ -76,6 +91,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
                 ListTile(
               title: const Text("Executive Committee"),
               onTap: () {
+                 Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ExecutiveCommitte()),
+              );
                 // Handle home item tap
                 // Close the drawer
               },
@@ -83,6 +102,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
             ListTile(
               title: const Text("Board of Directors"),
               onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BoardOfDirectors()),
+              );
                 // Handle home item tap
                 // Close the drawer
               },
@@ -90,6 +113,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
             ListTile(
               title: const Text("Foundation "),
               onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Foundation()),
+              );
                 // Handle home item tap
                 // Close the drawer
               },
@@ -97,6 +124,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
             ListTile(
               title: const Text("Presidents Club"),
               onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => President()),
+              );
                 // Handle home item tap
                 // Close the drawer
               },
@@ -126,6 +157,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
                 ListTile(
               title: const Text("About Team Square"),
               onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Teamsquare()),
+              );
                 // Handle home item tap
                 // Close the drawer
               },
@@ -133,6 +168,10 @@ class _OneStopScreenState extends State<DrawerWidget> {
             ListTile(
               title: const Text("Call us for Help"),
               onTap: () {
+                 Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CallUsHelp()),
+              );
                 // Handle home item tap
                 // Close the drawer
               },

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tana/navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -23,6 +22,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // ignore: unused_field
   int _currentIndex = 0;
 
   void _onItemTapped(int index) {

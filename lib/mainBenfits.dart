@@ -26,6 +26,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // ignore: unused_field
   int _currentIndex = 1;
 
   void _onItemTapped(int index) {
