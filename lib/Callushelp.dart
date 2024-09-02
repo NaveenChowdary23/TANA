@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tana/Drawer.dart';
+import 'package:tana/navigation.dart';
 
 class CallUsHelp extends StatelessWidget {
   CallUsHelp({super.key});
@@ -7,105 +9,142 @@ class CallUsHelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    // ignore: unused_local_variable
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color(0xffeeeff4),
+      backgroundColor: const Color(0xffeeeff4),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFC20000), // Left color
-                  Color(0xFFA00000), // Right color
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
             ),
-            child: Column(
-              children: [
-                SizedBox(height: height * 0.04),
-                SizedBox(
-                  height: height * 0.10,
-                  width: width * 1,
-                  child: Image.asset('assets/header.png', height: height * 0.2, width: width * 1),
-                ),
-              ],
-            ),
+          // Header with background color
+          child: Container(
+            width: double.infinity,
+            color: Color.fromARGB(255, 245, 109, 88), // Background color for the header
+            padding: EdgeInsets.symmetric(vertical: height * 0.07),
           ),
-          SizedBox(height: height * 0.02),
-
-          // Row-like structure for displaying Name, Phone Number, State side by side
+          ),
+          SizedBox(height: height * 0.03), // Space between header and content
+          
+          // Table for displaying Name, Phone Number, State
           Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween, // Adjust spacing between elements
+            padding: const EdgeInsets.all(30.0),
+            child: Table(
+              border: TableBorder.all(
+                color: Colors.grey, // Border color
+                width: 1, // Border width
+                borderRadius: BorderRadius.circular(4.0), // Rounded corners if needed
+              ),
+              columnWidths: {
+                0: const FlexColumnWidth(2), // Adjust width ratios
+                1: const FlexColumnWidth(2),
+                2: const FlexColumnWidth(2),
+              },
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                TableRow(
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 238, 10, 10), // Header row color
+                  ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
                         'Name',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                          color: Colors.white, // Text color for header
+                        ),
                       ),
-                      SizedBox(height: 4.0),
-                      Text(
-                        'John Doe',
-                      ),
-                      Text(
-                        'John Doe',
-                      ),
-
-                    ],
-                  ),
-                ),
-                SizedBox(width: 16.0), // Adds space between "Name" and "Phone Number"
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
                         'Phone Number',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                          color: Colors.white, // Text color for header
+                        ),
                       ),
-                      SizedBox(height: 4.0),
-                      Text(
-                        '+1 234 567 890',
-                      ),
-                      Text(
-                        '+1 234 567 890',
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(width: 18.0), // Adds space between "Phone Number" and "State"
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
                         'State',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                          color: Colors.white, // Text color for header
+                        ),
                       ),
-                      SizedBox(height: 4.0),
-                      Text(
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'John Doe',
+                        style: const TextStyle(fontFamily: 'Roboto'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '+1 234 567 890',
+                        style: const TextStyle(fontFamily: 'Roboto'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
                         'California',
+                        style: const TextStyle(fontFamily: 'Roboto'),
                       ),
-                      Text(
-                        'singapore',
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Jane Smith',
+                        style: const TextStyle(fontFamily: 'Roboto'),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '+1 234 567 891',
+                        style: const TextStyle(fontFamily: 'Roboto'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Singapore',
+                        style: const TextStyle(fontFamily: 'Roboto'),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ],
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+        selected: 1,
+      ),
+      drawer: DrawerWidget(),
     );
   }
 }

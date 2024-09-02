@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'TANA',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -123,7 +124,8 @@ class _TwoTextInputsState extends State<MainScreen> {
           child: Center(
             child: Text(
               "Welcome to TANA",
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30,
+              fontFamily: 'Roboto'),
             ),
           ),
         ),
@@ -204,7 +206,7 @@ class _TwoTextInputsState extends State<MainScreen> {
           ],
         ),
         SizedBox(
-          height: Height * 0.04,
+          height: Height * 0.13,
         ),
         Row(children: [
           SizedBox(width: Width*0.1,),
@@ -226,6 +228,7 @@ class _TwoTextInputsState extends State<MainScreen> {
                                 ),
         ],),
         Row(children: [
+          
           SizedBox(width: Width*0.1,),
           Text('menu'),
         ])
@@ -312,14 +315,15 @@ class VerifyScreen extends StatelessWidget {
                 width: Width * 0.1,
               ),
               SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
+                width: Width * 0.8, // Adjust the width as neededj≤
                 child: Text(
                   'We Sent an Authorization Code to your Email Please Enter Authorization Code to Authorize',
                   maxLines: null, // Allows the text to wrap to a new line
                   overflow:
                       TextOverflow.visible, // Ensures the text is fully visible
                   style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
+                    fontSize: 16.0,
+                    fontFamily: 'Roboto', // Adjust the font size as needed
                   ),
                 ),
               ),
@@ -334,7 +338,8 @@ class VerifyScreen extends StatelessWidget {
           Center(
               child: Text(
             'Authentication Code',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 30,
+            fontFamily: 'Roboto',),
           )),
           SizedBox(
             height: Height * 0.08,
@@ -400,7 +405,8 @@ class VerifyScreen extends StatelessWidget {
                   overflow:
                       TextOverflow.visible, // Ensures the text is fully visible
                   style: TextStyle(
-                    fontSize: 16.0, // Adjust the font size as needed
+                    fontSize: 16.0, 
+                    fontFamily: 'Roboto',// Adjust the font size as needed
                   ),
                 ),
               ),
@@ -409,6 +415,7 @@ class VerifyScreen extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: Height * 0.07),
           Row(children: [
           SizedBox(width: Width*0.1,),
           Builder(

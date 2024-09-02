@@ -5,83 +5,131 @@ import 'package:tana/navigation.dart';
 class Benfit extends StatelessWidget {
   final String title;
   final String imagePath;
+  final String address;
+  final String offers;
 
-  Benfit({required this.title, required this.imagePath});
+  Benfit({
+    required this.title,
+    required this.imagePath,
+    required this.address,
+    required this.offers,
+  });
+
   @override
   Widget build(BuildContext context) {
-    double Height=MediaQuery.of(context).size.height;
-    double Width=MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      
-      body: SingleChildScrollView(child:  Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-          decoration: BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        Color(0xFFC20000), // Left color
-        Color(0xFFA00000), // Right color
-      ],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-    ),
-  ), // Replace with your desired color
-          child:Column(children: [ 
-            SizedBox(height: Height*0.04,),
-            
-          SizedBox(
-            height: Height * 0.10,
-            width: Width * 1,
-            child: Image.asset('assets/header.png',
-                height: Height * 0.2, width: Width * 1),
-          ),
-        ],)),
-          SizedBox(
-            height: Height * 0.05,
-          ),
-          Row(children: [
-              SizedBox(width: Width*0.1,),
-              IconButton(onPressed: () {
-                    // Add your button logic here
-                     Navigator.pop(context);
-                  }, icon: 
-              Icon(Icons.arrow_back_ios))
-            ],),
-          SizedBox(height: Height*0.1,),
-          Center(child: 
-          Container(
-            height: Height * 0.3,
-            width: Width * 0.6,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12.0), // Rounded corners
-              border: Border.all(
-                color: Colors.blue, // Border color
-                width: 2.0, // Border width
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // Header with background color and rounded corners
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
+              ),
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: height * 0.05),
+                color: Color.fromARGB(255, 245, 109, 88), // Background color of the header
               ),
             ),
-            child: Column(children: [
-              SizedBox(height: Height*0.02,),
-              SizedBox(height: Height*0.1,child: Image.asset(imagePath),),
-              
-              SizedBox(height: Height*0.04,),
-              Text(title),
-              SizedBox(height: Height*0.04,),
-              Text('50% off'),
-              
-            ],),
-          ),
-          ),          
+            SizedBox(height: height * 0.03), // Add some space after the header
+            Row(
+              children: [
+                SizedBox(width: width * 0.1),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back_ios),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: width * 0.8,
+              child: Center(
+                child: Text(
+                  'Benefit Detail',
+                  maxLines: null,
+                  overflow: TextOverflow.visible,
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFC20000),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: height * 0.04),
+            Center(
+              child: Container(
+                height: height * 0.4,
+                width: width * 0.8,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12.0), // Rounded corners
+                  border: Border.all(
+                    color: Colors.blue, // Border color
+                    width: 2.0, // Border width
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: height * 0.03),
+                    SizedBox(
+                      height: height * 0.1,
+                      child: Image.asset(imagePath),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Text(
+                      title,
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Text(
+                      address,
+                      style: TextStyle(fontSize: 16, color: Colors.green),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Text(
+                      offers,
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Color.fromARGB(255, 241, 10, 10),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: height * 0.08), // Add space between the container and button
+            ElevatedButton(
+              onPressed: () {
+                // Define your button action here
+                print('ElevatedButton pressed');
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Color.fromARGB(255, 245, 109, 88), // Text color
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text('Add to My Benifits'),
+            ),
           ],
-      ),
+        ),
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(
-          
-          selected: 1,
-        ),
-        drawer: DrawerWidget(),
+        selected: 1,
+      ),
+      drawer: DrawerWidget(),
     );
   }
 }

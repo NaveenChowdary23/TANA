@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tana/Benfits.dart';
+import 'package:tana/Drawer.dart';
+import 'package:tana/IndiaBenfits.dart';
+import 'package:tana/ReginalBenfits.dart';
+import 'package:tana/navigation.dart';
 
 class NationalBenfits extends StatefulWidget {
   @override
@@ -15,6 +20,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
   // Define the colors for stripes
   final Color evenRowColor = Colors.white;
   final Color oddRowColor = Colors.grey[200]!;
+  
 
   // Method to build the header row
   Widget buildTableHeader() {
@@ -31,7 +37,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                 padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                    'Logo',
+                    'Business',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -67,7 +73,18 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
 
   // Method to build a menu row with a stripe color
   Widget buildMenuButton(String title, String imagePath, String address, String offer, bool isEven) {
-    return Table(
+    return GestureDetector(
+     onTap: () {
+      // Perform your action here when the row is tapped
+      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Benfit(title: title ,imagePath: imagePath,address: address,offers: offer,)),
+                    );
+      // You can navigate to another screen or perform other actions
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => YourNewScreen()));
+    },
+    child :Table(
       border: TableBorder.all(color: Colors.black, width: 0.4),
       children: [
         TableRow(
@@ -79,17 +96,17 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
                       imagePath,
                       height: 50,
-                      width: 50,
+                      width: 50, 
                     ),
                     SizedBox(height: 8.0),
                     Text(
                       title,
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFFC20000)),
                     ),
                   ],
                 ),
@@ -101,7 +118,6 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                 child: Text(
                   address,
                   style: TextStyle(color: Colors.grey[700]),
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
@@ -111,14 +127,14 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                 child: Text(
                   offer,
                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
           ],
         ),
       ],
-    );
+    ));
   }
 
   @override
@@ -126,32 +142,79 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    String activeSection = 'National';
+  
+Widget buildHeaderButton(String title, Widget page, bool isActive) {
+      return Expanded(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => page),
+            );
+          },
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: isActive ? Colors.blue : Colors.white, // Blue if active, white otherwise
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              if (isActive)
+                Positioned(
+                  bottom: 23,
+                  child: Container(
+                    height: 2, // Line height
+                    width: 100, // Adjust width as needed
+                    color: Colors.blue, // Line color
+                  ),
+                ),
+            ],
+          ),
+        ),
+      );
+    }
     return Scaffold(
       backgroundColor: Color(0xffeeeff4),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFC20000), // Left color
-                  Color(0xFFA00000), // Right color
+          Stack(
+            children: [
+              ClipRRect(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)), // Adjust the radius as needed
+            child: Container(
+              color: Color.fromARGB(255, 245, 109, 88), // Header background color
+              child: Column(
+                children: [
+                  SizedBox(height: height * 0.04),
+                  Container(
+                    height: height * 0.1,
+                    color: Color.fromARGB(255, 245, 109, 88), // Header background color
+                    child: Row(
+                      children: [
+                        buildHeaderButton('National', NationalBenfits(), activeSection == 'National'),
+                        buildHeaderButton('Regional', RegionalBenfits(), activeSection == 'Regional'),
+                        buildHeaderButton('Global', IndiaBenfits(), activeSection == 'Global'), // Adjust padding as needed
+                        Image.asset(
+                                'assets/logo.png',
+                                height: 40,
+                                width: 80,
+                              ),
+                      ],
+                    ),
+                  ),
                 ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
               ),
             ),
-            child: Column(
-              children: [
-                SizedBox(height: height * 0.04),
-                SizedBox(
-                  height: height * 0.10,
-                  width: width,
-                  child: Image.asset('assets/header.png', height: height * 0.2, width: width),
-                ),
-              ],
-            ),
+          ),
+            ],
           ),
           SizedBox(height: height * 0.04),
           Row(
@@ -187,7 +250,7 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                 children: [
                   Card(
                     color: Colors.white,
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.symmetric(horizontal : 30.0),
                     child: Column(
                       children: [
                         ListTile(
@@ -205,44 +268,45 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                             'Walmart',
                             'assets/Walmart.png',
                             'Address for Walmart',
-                            'Offers: 20% off',
+                            '20% off',
                             true,
                           ),
                           buildMenuButton(
                             'Amazon',
                             'assets/amazon.png',
                             'Address for Amazon',
-                            'Offers: 15% off',
+                            '15% off',
                             false,
                           ),
                           buildMenuButton(
                             'Costco',
                             'assets/Costco.png',
                             'Address for Costco',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                           buildMenuButton(
                             'The Home Depot',
                             'assets/theHome.png',
                             'Address for The Home Depot',
-                            'Offers: 25% off',
+                            '25% off',
                             false,
                           ),
                           buildMenuButton(
                             'Target',
                             'assets/Target.png',
                             'Address for Target',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                         ],
                       ],
                     ),
                   ),
+                  SizedBox(height: height * 0.03),
                   Card(
                     color: Colors.white,
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.symmetric(horizontal : 30.0),
                     child: Column(
                       children: [
                         ListTile(
@@ -260,44 +324,45 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                             'Walmart',
                             'assets/Walmart.png',
                             'Address for Walmart',
-                            'Offers: 20% off',
+                            '20% off',
                             true,
                           ),
                           buildMenuButton(
                             'Amazon',
                             'assets/amazon.png',
                             'Address for Amazon',
-                            'Offers: 15% off',
+                            '15% off',
                             false,
                           ),
                           buildMenuButton(
                             'Costco',
                             'assets/Costco.png',
                             'Address for Costco',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                           buildMenuButton(
                             'The Home Depot',
                             'assets/theHome.png',
                             'Address for The Home Depot',
-                            'Offers: 25% off',
+                            '25% off',
                             false,
                           ),
                           buildMenuButton(
                             'Target',
                             'assets/Target.png',
                             'Address for Target',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                         ],
                       ],
                     ),
                   ),
+                  SizedBox(height: height * 0.03),
                   Card(
                     color: Colors.white,
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.symmetric(horizontal :30.0),
                     child: Column(
                       children: [
                         ListTile(
@@ -315,44 +380,45 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                             'Walmart',
                             'assets/Walmart.png',
                             'Address for Walmart',
-                            'Offers: 20% off',
+                            '20% off',
                             true,
                           ),
                           buildMenuButton(
                             'Amazon',
                             'assets/amazon.png',
                             'Address for Amazon',
-                            'Offers: 15% off',
+                            '15% off',
                             false,
                           ),
                           buildMenuButton(
                             'Costco',
                             'assets/Costco.png',
                             'Address for Costco',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                           buildMenuButton(
                             'The Home Depot',
                             'assets/theHome.png',
                             'Address for The Home Depot',
-                            'Offers: 25% off',
+                            '25% off',
                             false,
                           ),
                           buildMenuButton(
                             'Target',
                             'assets/Target.png',
                             'Address for Target',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                         ],
                       ],
                     ),
                   ),
+                  SizedBox(height: height * 0.03),
                   Card(
                     color: Colors.white,
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.symmetric(horizontal : 30.0),
                     child: Column(
                       children: [
                         ListTile(
@@ -370,44 +436,45 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                             'Walmart',
                             'assets/Walmart.png',
                             'Address for Walmart',
-                            'Offers: 20% off',
+                            '20% off',
                             true,
                           ),
                           buildMenuButton(
                             'Amazon',
                             'assets/amazon.png',
                             'Address for Amazon',
-                            'Offers: 15% off',
+                            '15% off',
                             false,
                           ),
                           buildMenuButton(
                             'Costco',
                             'assets/Costco.png',
                             'Address for Costco',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                           buildMenuButton(
                             'The Home Depot',
                             'assets/theHome.png',
                             'Address for The Home Depot',
-                            'Offers: 25% off',
+                            '25% off',
                             false,
                           ),
                           buildMenuButton(
                             'Target',
                             'assets/Target.png',
                             'Address for Target',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                         ],
                       ],
                     ),
                   ),
+                  SizedBox(height: height * 0.03),
                   Card(
                     color: Colors.white,
-                    margin: EdgeInsets.all(16.0),
+                    margin: EdgeInsets.symmetric(horizontal : 30.0),
                     child: Column(
                       children: [
                         ListTile(
@@ -425,35 +492,35 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
                             'Walmart',
                             'assets/Walmart.png',
                             'Address for Walmart',
-                            'Offers: 20% off',
+                            '20% off',
                             true,
                           ),
                           buildMenuButton(
                             'Amazon',
                             'assets/amazon.png',
                             'Address for Amazon',
-                            'Offers: 15% off',
+                            '15% off',
                             false,
                           ),
                           buildMenuButton(
                             'Costco',
                             'assets/Costco.png',
                             'Address for Costco',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                           buildMenuButton(
                             'The Home Depot',
                             'assets/theHome.png',
                             'Address for The Home Depot',
-                            'Offers: 25% off',
+                            '25% off',
                             false,
                           ),
                           buildMenuButton(
                             'Target',
                             'assets/Target.png',
                             'Address for Target',
-                            'Offers: 10% off',
+                            '10% off',
                             true,
                           ),
                         ],
@@ -467,6 +534,10 @@ class _NationalBenfitsBoxState extends State<NationalBenfits> {
           ),
         ],
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(
+        selected: 1,
+      ),
+      drawer: DrawerWidget(),
     );
   }
 }

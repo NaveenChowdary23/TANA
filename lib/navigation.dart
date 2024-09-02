@@ -1,7 +1,36 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:tana/Profile.dart';
+import 'package:tana/Teamsquare.dart';
 import 'package:tana/mainBenfits.dart';
 import 'package:tana/myBenfits.dart';
+
+// Define the NavItem widget (move this code to a separate file or above if needed)
+class NavItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const NavItem({
+    Key? key,
+    required this.icon,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 30),
+        SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(fontSize: 12),
+        ),
+      ],
+    );
+  }
+}
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final int selected;
@@ -17,48 +46,46 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  late int _selectedIndex; // Initialize with the provided selected index
+  late int _selectedIndex;
 
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.selected; // Initialize with the selected index
+    // Initialize _selectedIndex with the provided selected value
+    _selectedIndex = widget.selected;
   }
 
   @override
   Widget build(BuildContext context) {
+    final items = <Widget>[
+      NavItem(icon: Icons.menu, label: 'Menu'),
+      NavItem(icon: Icons.attach_money_rounded, label: 'Benefits'),
+      NavItem(icon: Icons.group, label: 'Team'),
+      NavItem(icon: Icons.account_balance_wallet, label: 'Wallet'),
+      NavItem(icon: Icons.person, label: 'Profile'),
+    ];
     double height = MediaQuery.of(context).size.height;
-    //double width = MediaQuery.of(context).size.width;
-    return BottomAppBar(
-      height: height * 0.08,
-      color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          buildIconButton(Icons.menu, 0), // Example icon
-          buildIconButton(Icons.attach_money_rounded, 1),    // Example icon
-          buildIconButton(Icons.account_balance_wallet, 2), // Example icon
-          buildIconButton(Icons.person, 3), // Example icon
-          ],
-      ),
-    );
-  }
 
-  IconButton buildIconButton(IconData icon, int index) {
-    return IconButton(
-      icon: Icon(
-        icon,
-        color: _selectedIndex == index ? Colors.blue : Colors.grey, // Change color based on selection
-        size: 24, // Adjust size as needed
+    return BottomAppBar(
+      child: SizedBox(
+        width: double.infinity,  // Ensure full width
+        height: height * 0.1,    // Set height based on screen height
+        child: CurvedNavigationBar(
+          backgroundColor: Colors.transparent,
+          buttonBackgroundColor: Color.fromARGB(255, 243, 120, 20),
+          height: 60,
+          animationCurve: Curves.easeInOut,
+          animationDuration: Duration(milliseconds: 300),
+          index: _selectedIndex,
+          items: items,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+              navigateToScreen(index);
+            });
+          },
+        ),
       ),
-      onPressed: () {
-        if (_selectedIndex != index) {
-          setState(() {
-            _selectedIndex = index; // Update selected index
-          });
-          navigateToScreen(index);
-        }
-      },
     );
   }
 
@@ -71,11 +98,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         navigateTo(MainBenfits());
         break;
       case 2:
-        navigateTo(myBenfit());
+        navigateTo(Teamsquare());
         break;
       case 3:
-        navigateTo(Profile());
+        navigateTo(myBenfit());
         break;
+      case 4:
+        navigateTo(Profile());
       default:
         // Handle default case
         break;
