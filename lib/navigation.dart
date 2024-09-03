@@ -5,7 +5,7 @@ import 'package:tana/Teamsquare.dart';
 import 'package:tana/mainBenfits.dart';
 import 'package:tana/myBenfits.dart';
 
-// Define the NavItem widget (move this code to a separate file or above if needed)
+// Define the NavItem widget
 class NavItem extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -60,8 +60,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     final items = <Widget>[
       NavItem(icon: Icons.menu, label: 'Menu'),
       NavItem(icon: Icons.attach_money_rounded, label: 'Benefits'),
-      NavItem(icon: Icons.group, label: 'Team'),
-      NavItem(icon: Icons.account_balance_wallet, label: 'Wallet'),
+      NavItem(icon: Icons.group, label: 'Team Square'),
+      NavItem(icon: Icons.account_balance_wallet, label: 'My Benefits'),
       NavItem(icon: Icons.person, label: 'Profile'),
     ];
     double height = MediaQuery.of(context).size.height;
@@ -71,7 +71,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         width: double.infinity,  // Ensure full width
         height: height * 0.1,    // Set height based on screen height
         child: CurvedNavigationBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           buttonBackgroundColor: Color.fromARGB(255, 243, 120, 20),
           height: 60,
           animationCurve: Curves.easeInOut,
@@ -90,28 +90,35 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   }
 
   void navigateToScreen(int index) {
+    Widget screen;
     switch (index) {
       case 0:
         Scaffold.of(context).openDrawer();
-        break;
+        return; // Do not navigate
       case 1:
-        navigateTo(MainBenfits());
+        screen = MainBenfits();
         break;
       case 2:
-        navigateTo(Teamsquare());
+        screen = Teamsquare();
         break;
       case 3:
-        navigateTo(myBenfit());
+        screen = MyBenefit();
         break;
       case 4:
-        navigateTo(Profile());
-      default:
-        // Handle default case
+        screen = Profile();
         break;
+      default:
+        return; // Do nothing if index is invalid
     }
-  }
 
-  void navigateTo(Widget screen) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+    ).then((_) {
+      // When coming back, update the _selectedIndex to keep the selected tab
+      setState(() {
+        _selectedIndex = index;
+      });
+    });
   }
 }

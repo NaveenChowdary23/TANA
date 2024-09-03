@@ -3,101 +3,102 @@ import 'package:tana/Benfits.dart';
 import 'package:tana/Drawer.dart';
 import 'package:tana/navigation.dart';
 
-class myBenfit extends StatelessWidget {
+class MyBenefit extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    // ignore: unused_local_variable
-    double width = MediaQuery.of(context).size.width;
+  _MyBenefitState createState() => _MyBenefitState();
+}
 
-    // Method to build a table row with a stripe color
-    Widget buildTableRow(String logoPath, String logoName, String address, String offer, bool isEven) {
-      return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Benfit(title: logoName, imagePath: logoPath, address: address, offers: offer),
-            ),
-          );
-        },
-        child: Table(
-          border: TableBorder.all(color: Colors.black, width: 0.4),
-          children: [
-            TableRow(
-              decoration: BoxDecoration(
-                color: isEven ? Colors.white : Colors.grey[200],
-              ),
-              children: [
-                TableCell(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          logoPath,
-                          height: 50,
-                          width: 50,
-                        ),
-                        SizedBox(height: 4.0),
-                        Text(
-                          logoName,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      address,
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                  ),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      offer,
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.delete,color: Colors.red,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    }
+class _MyBenefitState extends State<MyBenefit> {
+  // List of benefits (with hidden texts added)
+  List<Map<String, String>> benefits = [
+    {
+      'logoPath': 'assets/amazon.png',
+      'logoName': 'Amazon',
+      'address': '1250, Bald Eagle st, VA 20152',
+      'offer': '50% off',
+      'hiddenText1': 'offer valid only on catering.discount applies to cash payment.this discount not applied on dine-in and online orders',
+      'hiddenText2': 'Offer code : TANA2024',
+      'hiddenText3': 'Valid Until: Dec 2024',
+    },
+    {
+      'logoPath': 'assets/Target.png',
+      'logoName': 'Target',
+      'address': '1250, Bald Eagle st, VA 20152',
+      'offer': '50% off',
+      'hiddenText1': 'offer valid only on catering.discount applies to cash payment.this discount not applied on dine-in and online orders',
+      'hiddenText2': 'Offer code : TANA2024',
+      'hiddenText3': 'Valid Until: Dec 2024',
+    },
+    {
+      'logoPath': 'assets/theHome.png',
+      'logoName': 'The Home Depot',
+      'address': '1250, Bald Eagle st, VA 20152',
+      'offer': '50% off',
+      'hiddenText1': 'offer valid only on catering.discount applies to cash payment.this discount not applied on dine-in and online orders',
+      'hiddenText2': 'Offer code : TANA2024',
+      'hiddenText3': 'Valid Until: Dec 2024',
+    },
+    {
+      'logoPath': 'assets/Walmart.png',
+      'logoName': 'Walmart',
+      'address': '1250, Bald Eagle st, VA 20152',
+      'offer': '50% off',
+      'hiddenText1': 'offer valid only on catering.discount applies to cash payment.this discount not applied on dine-in and online orders',
+      'hiddenText2': 'Offer code : TANA2024',
+      'hiddenText3': 'Valid Until: Dec 2024',
+    },
+  ];
 
-    // Method to build the table header row
-    Widget buildTableHeader() {
-      return Table(
+  // Method to handle delete action
+  void _deleteBenefit(int index) {
+    setState(() {
+      benefits.removeAt(index);
+    });
+  }
+
+  // Method to build a table row with a stripe color
+  Widget buildTableRow(int index, String logoPath, String logoName, String address, String offer, bool isEven) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Benfit(
+              title: logoName,
+              imagePath: logoPath,
+              address: address,
+              offers: offer,
+              hiddenText1: benefits[index]['hiddenText1']!,
+              hiddenText2: benefits[index]['hiddenText2']!,
+              hiddenText3: benefits[index]['hiddenText3']!,
+            ),
+          ),
+        );
+      },
+      child: Table(
         border: TableBorder.all(color: Colors.black, width: 0.4),
         children: [
           TableRow(
             decoration: BoxDecoration(
-              color: Colors.blueGrey[100],
+              color: isEven ? Colors.white : Colors.grey[200],
             ),
             children: [
               TableCell(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Logo',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        logoPath,
+                        height: 50,
+                        width: 50,
+                      ),
+                      SizedBox(height: 4.0),
+                      Text(
+                        logoName,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -105,8 +106,8 @@ class myBenfit extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    'Address',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    address,
+                    style: TextStyle(color: Colors.grey[700]),
                   ),
                 ),
               ),
@@ -114,8 +115,8 @@ class myBenfit extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    'Offer',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    offer,
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -123,18 +124,106 @@ class myBenfit extends StatelessWidget {
               TableCell(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Delete',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    textAlign: TextAlign.center,
+                  child: IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {
+                      _showDeleteConfirmationDialog(index);
+                    },
                   ),
                 ),
               ),
             ],
           ),
         ],
-      );
-    }
+      ),
+    );
+  }
+
+  // Method to build the table header row
+  Widget buildTableHeader() {
+    return Table(
+      border: TableBorder.all(color: Colors.black, width: 0.4),
+      children: [
+        TableRow(
+          decoration: BoxDecoration(
+            color: Colors.blueGrey[100],
+          ),
+          children: [
+            TableCell(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Logo',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Address',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ),
+            ),
+            TableCell(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Offer',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            TableCell(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Delete',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  // Method to show confirmation dialog before deleting
+  void _showDeleteConfirmationDialog(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirm Deletion'),
+          content: Text('Are you sure you want to delete this benefit?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _deleteBenefit(index);
+              },
+              child: Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -169,10 +258,16 @@ class myBenfit extends StatelessWidget {
               child: Column(
                 children: [
                   buildTableHeader(),
-                  buildTableRow('assets/amazon.png', 'Amazon', 'Address for Amazon', '50% off', true),
-                  buildTableRow('assets/Target.png', 'Target', 'Address for Target', '50% off', false),
-                  buildTableRow('assets/theHome.png', 'The Home Depot', 'Address for The Home Depot', '50% off', true),
-                  buildTableRow('assets/Walmart.png', 'Walmart', 'Address for Walmart', '50% off', false),
+                  // Generate rows dynamically
+                  for (int i = 0; i < benefits.length; i++)
+                    buildTableRow(
+                      i,
+                      benefits[i]['logoPath']!,
+                      benefits[i]['logoName']!,
+                      benefits[i]['address']!,
+                      benefits[i]['offer']!,
+                      i.isEven,
+                    ),
                 ],
               ),
             ),
@@ -180,7 +275,7 @@ class myBenfit extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(
-        selected: 2,
+        selected: 3,
       ),
       drawer: DrawerWidget(),
     );

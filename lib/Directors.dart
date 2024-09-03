@@ -175,7 +175,7 @@ class BoardOfDirectors extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(
-        selected: 2,
+        selected: 0,
       ),
       drawer: DrawerWidget(),
     );

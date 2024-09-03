@@ -175,7 +175,7 @@ class Foundation extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(
-        selected: 1,
+        selected: 0,
       ),
       drawer: DrawerWidget(),
     );

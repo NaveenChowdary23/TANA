@@ -70,7 +70,7 @@ class Teamsquare extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(
-        selected: 1,
+        selected: 2,
       ),
       drawer: DrawerWidget(),
     );

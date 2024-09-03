@@ -9,82 +9,248 @@ class Profile extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // Header Container with the specified color
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
-              ),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 50.0),
-                color: Color.fromARGB(255, 245, 109, 88),
-              ),
+      body: Column(
+        children: [
+          // Header Container with Profile Text
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
             ),
-            SizedBox(height: height * 0.04),
-
-            // Profile Text at the top of the body
-            Text(
-              'Profile',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(height: height * 0.02),
-            Row(
-              children: [
-                SizedBox(width: width * 0.6),
-                IconButton(
-                  icon: Icon(
-                    Icons.camera_alt,
-                    size: 20,
-                    color: Colors.grey,
+            child: Container(
+              height: height * 0.1,
+              width: double.infinity,
+              color: Color.fromARGB(255, 245, 109, 88),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Profile',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
-                  onPressed: () {
-                    // Add your edit button functionality here
-                  },
-                ),
-              ],
-            ),
-            CircleAvatar(
-              radius: 50, // Adjust the radius as needed
-              backgroundColor: Colors.grey.shade200, // Background color while loading
-              child: ClipOval(
-                child: Icon(
-                  Icons.person,
-                  size: 50, // Adjust the size to fit the CircleAvatar radius
-                  color: Colors.grey,
-                ),
+                ],
               ),
             ),
-            SizedBox(height: height * 0.04),
-            Text(
-              'SAI BOLLINENI',
-              style: TextStyle(fontSize: 20),
+          ),
+          SizedBox(height: height * 0.02),
+
+          // Expanded Container for the rest of the content
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Profile Details Container
+                  Container(
+                    width: double.infinity,
+                    color: Colors.white, // White background color
+                    padding: EdgeInsets.symmetric(vertical: height * 0.02),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15), // Add radius here
+                          border: Border.all(
+                            color: Colors.grey.shade300, // Border color
+                            width: 1, // Border width
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(width * 0.03),
+                          child: Row(
+                            children: [
+                              // Profile Avatar
+                              CircleAvatar(
+                                radius: 40,
+                                backgroundColor: Colors.grey.shade200,
+                                child: Icon(
+                                  Icons.person,
+                                  size: 60,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(width: width * 0.25), // Space between avatar and text
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Sai Bolineni',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: height * 0.0),
+                                  Text(
+                                    'L-123456',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  SizedBox(height: height * 0.0),
+                                  Text(
+                                    'Type : LIFE',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+
+                  // Contact Information Container
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 1,
+                            blurRadius: 3,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Email: sai.bollineni@gmail.com',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: height * 0.01),
+                          Text(
+                            'Phone: +1 9876543210',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: height * 0.01),
+                          Text(
+                            'Spouse: Lorem Ipsum',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+
+                  // Membership ID Card Header
+                  Center(
+                    child: Text(
+                      'Membership ID Card',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+
+                  // ID Card Container
+                  Center(
+                    child: Container(
+                      width: width * 0.9,
+                      height: height * 0.25,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.asset(
+                              'assets/id card1.jpeg',
+                              fit: BoxFit.cover,
+                            ),
+                            Positioned(
+                              top: 85,
+                              left: 10,
+                              right: 10,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Sai Bolineni',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      fontFamily: 'Roboto',
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    'MEMBER ID   :   L-12345    STATE : VA',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontFamily: 'Roboto',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+
+                  // Address Container
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(width * 0.05),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade300,
+                            spreadRadius: 1,
+                            blurRadius: 3,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        'Address: 1234 Example Lane, Example City, EX 12345',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: height * 0.04),
-            Text(
-              'sai.bollineni@gmail.com',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: height * 0.04),
-            Text(
-              '+1 9876543210',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: height * 0.04),
-            Text(
-              'Salt Fork Dr, Fort Worth, \nTX 76179, USA',
-              style: TextStyle(fontSize: 20),
-              textAlign: TextAlign.center, // Center-align the address
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: const CustomBottomNavigationBar(
-        selected: 3,
+        selected: 4,
       ),
       drawer: DrawerWidget(),
     );

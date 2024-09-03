@@ -148,7 +148,7 @@ class _RegionalBenfitsState extends State<RegionalBenfits> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ReginalBenfitsSub(name: name),
+                          builder: (context) => ReginalBenfitsSub(name : name),
                         ),
                       );
                     },
