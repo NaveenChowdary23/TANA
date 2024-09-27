@@ -70,7 +70,6 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _TwoTextInputsState createState() => _TwoTextInputsState();
 }
 
@@ -95,358 +94,319 @@ class _TwoTextInputsState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double Height = MediaQuery.of(context).size.height;
-    double Width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xffeeeff4),
-        body: Column(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        Color(0xFFC20000), // Left color
-        Color(0xFFA00000), // Right color
-      ],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-    ),
-  ), // Replace with your desired color
-          child:Column(children: [ 
-            SizedBox(height: Height*0.04,),
-          SizedBox(
-            height: Height * 0.10,
-            width: Width * 1,
-            child: Image.asset('assets/header.png',
-                height: Height * 0.2, width: Width * 1),
-          ),
-          
-        ],)),
-        SizedBox(
-          height: Height * 0.3,
-          child: const Center(
-            child: Text(
-              "Welcome to TANA",
-              style: TextStyle(fontSize: 30,
-              fontFamily: 'Roboto'),
-            ),
-          ),
-        ),
-        SizedBox(width: Width*0.8,child: Center(child: TextField(
-                controller: _usernameController,
-                cursorColor: Colors.red,
-                obscureText: true,
-                decoration: InputDecoration(
-                   filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.red),
-                    borderRadius: BorderRadius.circular(100.0),
-                  ),
+      body: SingleChildScrollView( // Wrap with SingleChildScrollView
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFC20000),
+                    Color(0xFFA00000),
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                 ),
-              ),),),
-                            const SizedBox(height: 20.0),
-              SizedBox(width: Width*0.8,child: Center(child: TextField(
-                controller: _passwordController,
-                cursorColor: Colors.red,
-                obscureText: true,
-                decoration: InputDecoration(
-                   filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Last name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.red),
-                    borderRadius: BorderRadius.circular(100.0),
-                  ),
+              ),
+              child: Column(children: [
+                SizedBox(height: height * 0.04),
+                SizedBox(
+                  height: height * 0.10,
+                  width: width * 1,
+                  child: Image.asset('assets/header.png',
+                      height: height * 0.2, width: width * 1),
                 ),
-              ),),),
-              
-              const SizedBox(height: 20.0),
-              SizedBox(width: Width*0.8,child: Center(child:
-               SizedBox(
-          width: Width*0.8, // Adjust width as needed
-          height: 60, // Adjust height as needed
-          child: TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) =>  VerifyScreen()),
-              );
-            },
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all<Color>(Colors.red),
+              ]),
             ),
-            child: const Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
+            SizedBox(
+              height: height * 0.3,
+              child: const Center(
+                child: Text(
+                  "Welcome to TANA",
+                  style: TextStyle(fontSize: 30, fontFamily: 'Roboto'),
+                ),
               ),
             ),
-          ),
-        ),),),
-        SizedBox(
-          height: Height * 0.08,
-        ),
-        Row(
-          children: [
             SizedBox(
-              width: Width * 0.1,
+              width: width * 0.8,
+              child: Center(
+                child: TextField(
+                  controller: _usernameController,
+                  cursorColor: Colors.red,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Email',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.red),
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
+                  ),
+                ),
+              ),
             ),
-           
+            const SizedBox(height: 20.0),
             SizedBox(
-              width: Width * 0.1,
+              width: width * 0.8,
+              child: Center(
+                child: TextField(
+                  controller: _passwordController,
+                  cursorColor: Colors.red,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Last name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.red),
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
+                  ),
+                ),
+              ),
             ),
+            const SizedBox(height: 20.0),
+            SizedBox(
+              width: width * 0.8,
+              child: Center(
+                child: SizedBox(
+                  width: width * 0.8, // Adjust width as needed
+                  height: 60, // Adjust height as needed
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => VerifyScreen()),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red),
+                    ),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: height * 0.08),
+            Row(
+              children: [
+                SizedBox(width: width * 0.1),
+                SizedBox(width: width * 0.1),
+              ],
+            ),
+            SizedBox(height: height * 0.13),
+            Row(children: [
+              SizedBox(width: width * 0.1),
+              Builder(
+                builder: (context) => GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.menu_rounded,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ]),
+            Row(children: [
+              SizedBox(width: width * 0.1),
+              const Text('menu'),
+            ]),
           ],
         ),
-        SizedBox(
-          height: Height * 0.13,
-        ),
-        Row(children: [
-          SizedBox(width: Width*0.1,),
-          Builder(
-                                  builder: (context) => GestureDetector(
-                                    onTap: () {
-                                      Scaffold.of(context).openDrawer();
-                                    },
-                                    child: const Row(
-                                      children: [
-                                        Icon(
-                                          Icons.menu_rounded,
-                                          size: 30,
-                                          color: Colors.black,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-        ],),
-        Row(children: [
-          
-          SizedBox(width: Width*0.1,),
-          const Text('menu'),
-        ])
-      ],
-    ),
-    drawer: DrawerWidget(),
+      ),
+      drawer: DrawerWidget(),
     );
   }
-}
-
-class CustomTextFields extends StatelessWidget {
-  final TextEditingController controller1;
-  final TextEditingController controller2;
-
-  const CustomTextFields({super.key, required this.controller1, required this.controller2});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: TextField(
-            controller: controller1,
-            decoration: const InputDecoration(
-              hintText: 'Email',
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: TextField(
-            controller: controller2,
-            decoration: const InputDecoration(
-              hintText: 'Last name',
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+}///////////////////////////////
 
 class VerifyScreen extends StatelessWidget {
-   VerifyScreen({super.key});
+  VerifyScreen({super.key});
   final TextEditingController _code = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    double Height = MediaQuery.of(context).size.height;
-    double Width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xffeeeff4),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-          decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        Color(0xFFC20000), // Left color
-        Color(0xFFA00000), // Right color
-      ],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-    ),
-  ), // Replace with your desired color
-          child:Column(children: [ 
-            SizedBox(height: Height*0.04,),
-          SizedBox(
-            height: Height * 0.10,
-            width: Width * 1,
-            child: Image.asset('assets/header.png',
-                height: Height * 0.2, width: Width * 1),
-          ),
-        ],)),
-          SizedBox(
-            height: Height * 0.04,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as neededj≤
-                child: const Text(
-                  'We Sent an Authorization Code to your Email Please Enter Authorization Code to Authorize',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: 'Roboto', // Adjust the font size as needed
-                  ),
+      body: SingleChildScrollView( // Wrap with SingleChildScrollView
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFC20000),
+                    Color(0xFFA00000),
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                 ),
               ),
-              SizedBox(
-                width: Width * 0.1,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: Height * 0.04,
-          ),
-          const Center(
+              child: Column(children: [
+                SizedBox(height: height * 0.04),
+                SizedBox(
+                  height: height * 0.10,
+                  width: width * 1,
+                  child: Image.asset('assets/header.png',
+                      height: height * 0.2, width: width * 1),
+                ),
+              ]),
+            ),
+            SizedBox(height: height * 0.04),
+            Row(
+              children: [
+                SizedBox(width: width * 0.1),
+                SizedBox(
+                  width: width * 0.8,
+                  child: const Text(
+                    'We Sent an Authorization Code to your Email. Please Enter Authorization Code to Authorize',
+                    maxLines: null,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+                SizedBox(width: width * 0.1),
+              ],
+            ),
+            SizedBox(height: height * 0.04),
+            const Center(
               child: Text(
-            'Authentication Code',
-            style: TextStyle(fontSize: 30,
-            fontFamily: 'Roboto',),
-          )),
-          SizedBox(
-            height: Height * 0.08,
-          ),
-          SizedBox(width: Width*0.8,child: Center(child: TextField(
-                controller: _code,
-                cursorColor: Colors.red,
-                obscureText: true,
-                decoration: InputDecoration(
-                   filled: true,
+                'Authentication Code',
+                style: TextStyle(fontSize: 30, fontFamily: 'Roboto'),
+              ),
+            ),
+            SizedBox(height: height * 0.08),
+            SizedBox(
+              width: width * 0.8,
+              child: Center(
+                child: TextField(
+                  controller: _code,
+                  cursorColor: Colors.red,
+                  decoration: InputDecoration(
+                    filled: true,
                     fillColor: Colors.white,
                     hintText: 'Enter code',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(100.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.red),
-                    borderRadius: BorderRadius.circular(100.0),
-                  ),
-                ),
-              ),),),
-              
-          SizedBox(
-            height: Height * 0.08,
-          ),
-          SizedBox(width: Width*0.8,child: Center(child:
-               SizedBox(
-          width: Width*0.8, // Adjust width as needed
-          height: 60, // Adjust height as needed
-          child: TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) =>  MainBenfits()),
-              );
-            },
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all<Color>(Colors.red),
-            ),
-            child: const Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-        ),),),
-          SizedBox(
-            height: Height * 0.1,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: Width * 0.1,
-              ),
-              SizedBox(
-                width: Width * 0.8, // Adjust the width as needed
-                child: const Text(
-                  'Telugu Association of North America (or TANA, as it is well known) is the oldest and biggest Indo-American organization in North America.',
-                  maxLines: null, // Allows the text to wrap to a new line
-                  overflow:
-                      TextOverflow.visible, // Ensures the text is fully visible
-                  style: TextStyle(
-                    fontSize: 16.0, 
-                    fontFamily: 'Roboto',// Adjust the font size as needed
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(100.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.red),
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                width: Width * 0.1,
+            ),
+            SizedBox(height: height * 0.08),
+            SizedBox(
+              width: width * 0.8,
+              child: Center(
+                child: SizedBox(
+                  width: width * 0.8, // Adjust width as needed
+                  height: 60, // Adjust height as needed
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainBenfits()),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red),
+                    ),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ],
-          ),
-          SizedBox(height: Height * 0.07),
-          Row(children: [
-          SizedBox(width: Width*0.1,),
-          Builder(
-                                  builder: (context) => GestureDetector(
-                                    onTap: () {
-                                      Scaffold.of(context).openDrawer();
-                                    },
-                                    child: const Row(
-                                      children: [
-                                        Icon(
-                                          Icons.menu_rounded,
-                                          size: 30,
-                                          color: Colors.black,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-        ],),
-        Row(children: [
-          SizedBox(width: Width*0.1,),
-          const Text('menu'),
-        ])
-      ],
-    ),
-    drawer: DrawerWidget(),
+            ),
+            SizedBox(height: height * 0.1),
+            Row(
+              children: [
+                SizedBox(width: width * 0.1),
+                SizedBox(
+                  width: width * 0.8,
+                  child: const Text(
+                    'Telugu Association of North America (or TANA, as it is well known) is the oldest and biggest Indo-American organization in North America.',
+                    maxLines: null,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+                SizedBox(width: width * 0.1),
+              ],
+            ),
+            SizedBox(height: height * 0.07),
+            Row(children: [
+              SizedBox(width: width * 0.1),
+              Builder(
+                builder: (context) => GestureDetector(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.menu_rounded,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ]),
+            Row(children: [
+              SizedBox(width: width * 0.1),
+              const Text('menu'),
+            ]),
+          ],
+        ),
+      ),
+      drawer: DrawerWidget(),
     );
   }
 }
-
